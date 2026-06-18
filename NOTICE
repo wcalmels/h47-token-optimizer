@@ -1,0 +1,18 @@
+H47 Token Optimizer
+Copyright (c) 2024-2026 H47 Team
+
+This product includes software developed by the H47 Team.
+
+Third-party components:
+  - express (MIT) — web server
+  - commander (MIT) — CLI parsing
+  - vitest (MIT) — testing framework
+  - TypeScript (Apache-2.0) — language tooling
+
+For the full license text, see LICENSE.
+For architecture and limitations, see docs/ARCHITECTURE.md and docs/LIMITATIONS.md.
+For commercial viability analysis, see docs/BUSINESS.md.
+
+Trademarks: Claude (Anthropic), ChatGPT (OpenAI), Cursor (Anysphere), and VS Code
+(Microsoft) are trademarks of their respective owners. This project is not
+affiliated with or endorsed by those companies.

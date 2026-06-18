@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+title: "H47 Token Optimizer"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - name: "H47 Team"
+repository-code: "https://github.com/wcalmels/h47-token-optimizer"
+url: "https://github.com/wcalmels/h47-token-optimizer"
+license: MIT
+version: 1.0.0
+date-released: 2024-01-15
+keywords:
+  - token optimization
+  - prompt compression
+  - LLM context management
+  - Claude
+  - ChatGPT
+preferred-citation:
+  type: software
+  title: "H47 Token Optimizer: a deterministic pipeline for LLM context compression"
+  authors:
+    - name: "H47 Team"
+  year: 2024
+  url: "https://github.com/wcalmels/h47-token-optimizer"

@@ -1,0 +1,327 @@
+{
+  "version": "1.0.0",
+  "timestamp": "2026-06-18T23:31:51.135Z",
+  "nodeVersion": "v24.15.0",
+  "config": {
+    "iterations": 10,
+    "quick": true
+  },
+  "scenarios": [
+    {
+      "scenario": "Long conversation",
+      "category": "conversation",
+      "targetAI": "claude",
+      "compressionLevel": "aggressive",
+      "inputTokens": 4698,
+      "outputTokens": 1215,
+      "compressionPct": 74.14,
+      "quality": 0.95,
+      "tokensSaved": 3483,
+      "latency": {
+        "runs": 10,
+        "avgMs": 1.83,
+        "minMs": 1.26,
+        "maxMs": 3.33,
+        "p50Ms": 1.62,
+        "p95Ms": 3.33,
+        "opsPerSec": 546.6
+      }
+    },
+    {
+      "scenario": "Code analysis",
+      "category": "code",
+      "targetAI": "cursor",
+      "compressionLevel": "aggressive",
+      "inputTokens": 31446,
+      "outputTokens": 1210,
+      "compressionPct": 96.15,
+      "quality": 0.85,
+      "tokensSaved": 30236,
+      "latency": {
+        "runs": 10,
+        "avgMs": 9.49,
+        "minMs": 7.94,
+        "maxMs": 10.72,
+        "p50Ms": 9.15,
+        "p95Ms": 10.72,
+        "opsPerSec": 105.4
+      }
+    },
+    {
+      "scenario": "Structured logs",
+      "category": "data",
+      "targetAI": "generic",
+      "compressionLevel": "balanced",
+      "inputTokens": 34170,
+      "outputTokens": 2000,
+      "compressionPct": 94.15,
+      "quality": 0.85,
+      "tokensSaved": 32170,
+      "latency": {
+        "runs": 10,
+        "avgMs": 4.93,
+        "minMs": 3.99,
+        "maxMs": 6.21,
+        "p50Ms": 4.79,
+        "p95Ms": 6.21,
+        "opsPerSec": 202.8
+      }
+    },
+    {
+      "scenario": "Legal document",
+      "category": "document",
+      "targetAI": "claude",
+      "compressionLevel": "conservative",
+      "inputTokens": 3623,
+      "outputTokens": 96,
+      "compressionPct": 97.35,
+      "quality": 0.85,
+      "tokensSaved": 3527,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.88,
+        "minMs": 0.78,
+        "maxMs": 1.19,
+        "p50Ms": 0.79,
+        "p95Ms": 1.19,
+        "opsPerSec": 1131.4
+      }
+    },
+    {
+      "scenario": "Short prompt",
+      "category": "baseline",
+      "targetAI": "generic",
+      "compressionLevel": "balanced",
+      "inputTokens": 33,
+      "outputTokens": 33,
+      "compressionPct": 0,
+      "quality": 0.98,
+      "tokensSaved": 0,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.03,
+        "minMs": 0.02,
+        "maxMs": 0.12,
+        "p50Ms": 0.02,
+        "p95Ms": 0.12,
+        "opsPerSec": 30712.5
+      }
+    }
+  ],
+  "compressionMatrix": [
+    {
+      "scenario": "Conversation (conservative)",
+      "category": "matrix",
+      "targetAI": "generic",
+      "compressionLevel": "conservative",
+      "inputTokens": 1408,
+      "outputTokens": 1029,
+      "compressionPct": 26.92,
+      "quality": 0.98,
+      "tokensSaved": 379,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.62,
+        "minMs": 0.46,
+        "maxMs": 1.03,
+        "p50Ms": 0.47,
+        "p95Ms": 1.03,
+        "opsPerSec": 1605.7
+      }
+    },
+    {
+      "scenario": "Conversation (balanced)",
+      "category": "matrix",
+      "targetAI": "generic",
+      "compressionLevel": "balanced",
+      "inputTokens": 1408,
+      "outputTokens": 771,
+      "compressionPct": 45.24,
+      "quality": 0.98,
+      "tokensSaved": 637,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.53,
+        "minMs": 0.4,
+        "maxMs": 0.82,
+        "p50Ms": 0.47,
+        "p95Ms": 0.82,
+        "opsPerSec": 1894.5
+      }
+    },
+    {
+      "scenario": "Conversation (aggressive)",
+      "category": "matrix",
+      "targetAI": "generic",
+      "compressionLevel": "aggressive",
+      "inputTokens": 1408,
+      "outputTokens": 400,
+      "compressionPct": 71.59,
+      "quality": 0.95,
+      "tokensSaved": 1008,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.33,
+        "minMs": 0.32,
+        "maxMs": 0.34,
+        "p50Ms": 0.33,
+        "p95Ms": 0.34,
+        "opsPerSec": 3044.2
+      }
+    }
+  ],
+  "targetAIMatrix": [
+    {
+      "scenario": "Multi-AI adapter (claude)",
+      "category": "adapter",
+      "targetAI": "claude",
+      "compressionLevel": "balanced",
+      "inputTokens": 3121,
+      "outputTokens": 1507,
+      "compressionPct": 51.71,
+      "quality": 0.98,
+      "tokensSaved": 1614,
+      "latency": {
+        "runs": 10,
+        "avgMs": 1.21,
+        "minMs": 0.86,
+        "maxMs": 2.8,
+        "p50Ms": 0.91,
+        "p95Ms": 2.8,
+        "opsPerSec": 824.3
+      }
+    },
+    {
+      "scenario": "Multi-AI adapter (gpt)",
+      "category": "adapter",
+      "targetAI": "gpt",
+      "compressionLevel": "balanced",
+      "inputTokens": 3121,
+      "outputTokens": 1496,
+      "compressionPct": 52.07,
+      "quality": 0.98,
+      "tokensSaved": 1625,
+      "latency": {
+        "runs": 10,
+        "avgMs": 1.21,
+        "minMs": 0.87,
+        "maxMs": 2.29,
+        "p50Ms": 0.99,
+        "p95Ms": 2.29,
+        "opsPerSec": 825.9
+      }
+    },
+    {
+      "scenario": "Multi-AI adapter (cursor)",
+      "category": "adapter",
+      "targetAI": "cursor",
+      "compressionLevel": "balanced",
+      "inputTokens": 3121,
+      "outputTokens": 1502,
+      "compressionPct": 51.87,
+      "quality": 0.98,
+      "tokensSaved": 1619,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.94,
+        "minMs": 0.83,
+        "maxMs": 1.18,
+        "p50Ms": 0.91,
+        "p95Ms": 1.18,
+        "opsPerSec": 1064
+      }
+    },
+    {
+      "scenario": "Multi-AI adapter (generic)",
+      "category": "adapter",
+      "targetAI": "generic",
+      "compressionLevel": "balanced",
+      "inputTokens": 3121,
+      "outputTokens": 1491,
+      "compressionPct": 52.23,
+      "quality": 0.98,
+      "tokensSaved": 1630,
+      "latency": {
+        "runs": 10,
+        "avgMs": 1.07,
+        "minMs": 0.81,
+        "maxMs": 1.83,
+        "p50Ms": 0.85,
+        "p95Ms": 1.83,
+        "opsPerSec": 937.5
+      }
+    }
+  ],
+  "batch": {
+    "scenario": "Batch processing",
+    "batchSize": 3,
+    "totalInputTokens": 70314,
+    "totalOutputTokens": 6000,
+    "avgCompressionPct": 81.74,
+    "sequentialMs": 15.33,
+    "parallelMs": 15.22,
+    "parallelSpeedup": 1.01
+  },
+  "summary": {
+    "bestCompression": {
+      "scenario": "Legal document",
+      "category": "document",
+      "targetAI": "claude",
+      "compressionLevel": "conservative",
+      "inputTokens": 3623,
+      "outputTokens": 96,
+      "compressionPct": 97.35,
+      "quality": 0.85,
+      "tokensSaved": 3527,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.88,
+        "minMs": 0.78,
+        "maxMs": 1.19,
+        "p50Ms": 0.79,
+        "p95Ms": 1.19,
+        "opsPerSec": 1131.4
+      }
+    },
+    "fastestScenario": {
+      "scenario": "Short prompt",
+      "category": "baseline",
+      "targetAI": "generic",
+      "compressionLevel": "balanced",
+      "inputTokens": 33,
+      "outputTokens": 33,
+      "compressionPct": 0,
+      "quality": 0.98,
+      "tokensSaved": 0,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.03,
+        "minMs": 0.02,
+        "maxMs": 0.12,
+        "p50Ms": 0.02,
+        "p95Ms": 0.12,
+        "opsPerSec": 30712.5
+      }
+    },
+    "highestQuality": {
+      "scenario": "Short prompt",
+      "category": "baseline",
+      "targetAI": "generic",
+      "compressionLevel": "balanced",
+      "inputTokens": 33,
+      "outputTokens": 33,
+      "compressionPct": 0,
+      "quality": 0.98,
+      "tokensSaved": 0,
+      "latency": {
+        "runs": 10,
+        "avgMs": 0.03,
+        "minMs": 0.02,
+        "maxMs": 0.12,
+        "p50Ms": 0.02,
+        "p95Ms": 0.12,
+        "opsPerSec": 30712.5
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "h47-token-optimizer-claude",
+  "version": "1.0.0",
+  "description": "H47 Token Optimizer plugin for Claude — reduce tokens 70-90%",
+  "main": "../../dist/extensions/claude/plugin.js",
+  "keywords": ["claude", "token-optimizer", "h47"],
+  "author": "H47 Team",
+  "license": "MIT",
+  "h47": {
+    "capabilities": [
+      "optimize-text",
+      "optimize-conversation",
+      "optimize-system-prompt"
+    ],
+    "supportedModels": ["claude-3", "claude-4"]
+  }
+}

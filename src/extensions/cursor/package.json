@@ -1,0 +1,25 @@
+{
+  "name": "h47-token-optimizer-cursor",
+  "displayName": "H47 Token Optimizer (Cursor)",
+  "description": "Token optimization for Cursor IDE — reduce context size 70-90%",
+  "version": "1.0.0",
+  "publisher": "h47-team",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "main": "../../dist/extensions/cursor/extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      {
+        "command": "h47-cursor.optimize-selection",
+        "title": "H47: Optimize Selection for Cursor AI"
+      },
+      {
+        "command": "h47-cursor.optimize-prompt",
+        "title": "H47: Optimize Prompt (Aggressive)"
+      }
+    ]
+  }
+}

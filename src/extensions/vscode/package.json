@@ -1,0 +1,45 @@
+{
+  "name": "h47-token-optimizer",
+  "displayName": "H47 Token Optimizer",
+  "description": "Reduce tokens 70-90% for Claude, ChatGPT, and other AI models",
+  "version": "1.0.0",
+  "publisher": "h47-team",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:h47-optimizer.optimize"
+  ],
+  "main": "../../dist/extensions/vscode/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "h47-optimizer.optimize",
+        "title": "H47: Optimize Selected Text"
+      },
+      {
+        "command": "h47-optimizer.optimize-claude",
+        "title": "H47: Optimize for Claude"
+      },
+      {
+        "command": "h47-optimizer.stats",
+        "title": "H47: Show Statistics"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "h47-optimizer.optimize",
+        "key": "ctrl+shift+o",
+        "mac": "cmd+shift+o",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wcalmels/h47-token-optimizer"
+  }
+}

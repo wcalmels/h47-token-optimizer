@@ -1,0 +1,103 @@
+{
+  "name": "h47-token-optimizer",
+  "version": "1.0.0",
+  "description": "Deterministic local compression for LLM prompts. No inference required. MIT licensed.",
+  "type": "module",
+  "main": "dist/core/index.js",
+  "bin": {
+    "h47-optimize": "dist/cli/index.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./api": {
+      "import": "./dist/api/server.js",
+      "types": "./dist/api/server.d.ts"
+    },
+    "./claude": {
+      "import": "./dist/extensions/claude/plugin.js",
+      "types": "./dist/extensions/claude/plugin.d.ts"
+    },
+    "./cursor": {
+      "import": "./dist/extensions/cursor/extension.js",
+      "types": "./dist/extensions/cursor/extension.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsx watch src/api/server.ts",
+    "build": "tsc && tsc -p tsconfig.vscode.json",
+    "start": "node dist/api/server.js",
+    "cli": "tsx src/cli/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint src tests --ext .ts",
+    "format": "prettier --write src tests",
+    "type-check": "tsc --noEmit",
+    "benchmark": "tsx src/benchmarks/index.ts",
+    "benchmark:quick": "tsx src/benchmarks/index.ts --quick",
+    "benchmark:json": "tsx src/benchmarks/index.ts --json --json=benchmarks/results.json",
+    "benchmark:csv": "tsx src/benchmarks/index.ts --quick --csv --json=benchmarks/results.json",
+    "benchmark:compare": "tsx src/benchmarks/compareCli.ts",
+    "benchmark:save-baseline": "tsx src/benchmarks/index.ts --quick --save-baseline --quiet --json=benchmarks/baseline.json"
+  },
+  "keywords": [
+    "token-optimizer",
+    "prompt-compression",
+    "llm",
+    "context-window",
+    "claude",
+    "chatgpt",
+    "cursor",
+    "typescript"
+  ],
+  "author": "H47 Team <team@h47.ai> (https://github.com/h47-team)",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2024-2026 H47 Team",
+  "files": [
+    "dist",
+    "LICENSE",
+    "NOTICE",
+    "README.md",
+    "CITATION.cff"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wcalmels/h47-token-optimizer"
+  },
+  "bugs": {
+    "url": "https://github.com/wcalmels/h47-token-optimizer/issues"
+  },
+  "homepage": "https://github.com/wcalmels/h47-token-optimizer#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "commander": "^12.1.0",
+    "axios": "^1.12.0",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^24.7.0",
+    "@types/express": "^4.17.21",
+    "@types/uuid": "^9.0.7",
+    "@types/vscode": "^1.80.0",
+    "@vitest/coverage-v8": "^2.1.4",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.6.0",
+    "tsx": "^4.19.1",
+    "vitest": "^2.1.4",
+    "eslint": "^9.13.0",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "prettier": "^3.6.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
