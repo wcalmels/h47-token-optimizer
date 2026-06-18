@@ -184,5 +184,16 @@ See [NOTICE](NOTICE) for third-party attributions.
 - [Architecture](docs/ARCHITECTURE.md)
 - [Limitations](docs/LIMITATIONS.md) — read before production
 - [Business viability](docs/BUSINESS.md)
+- [VS Code Marketplace](docs/MARKETPLACE.md) — publish the extension
 - [Changelog](CHANGELOG.md)
 - [Security policy](SECURITY.md)
+
+## VS Code / Cursor Extension
+
+```bash
+npm run extension:pack   # → extensions/vscode/h47-token-optimizer-1.0.0.vsix
+```
+
+Install in VS Code or Cursor: **Extensions → … → Install from VSIX**.
+
+Publish to Marketplace: see [docs/MARKETPLACE.md](docs/MARKETPLACE.md).

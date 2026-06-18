@@ -1,0 +1,123 @@
+{
+  "name": "h47-token-optimizer",
+  "displayName": "H47 Token Optimizer",
+  "description": "Compress LLM prompts locally — no API calls. Reduce tokens on selected text for Claude, GPT, and Cursor.",
+  "version": "1.0.0",
+  "publisher": "wcalmels",
+  "license": "MIT",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning"
+  ],
+  "keywords": [
+    "llm",
+    "token",
+    "optimizer",
+    "claude",
+    "chatgpt",
+    "cursor",
+    "prompt",
+    "compression",
+    "ai"
+  ],
+  "activationEvents": [
+    "onCommand:h47-optimizer.optimize"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "h47-optimizer.optimize",
+        "title": "H47: Optimize Selected Text",
+        "category": "H47"
+      },
+      {
+        "command": "h47-optimizer.optimize-replace",
+        "title": "H47: Optimize and Replace Selection",
+        "category": "H47"
+      },
+      {
+        "command": "h47-optimizer.optimize-claude",
+        "title": "H47: Optimize for Claude",
+        "category": "H47"
+      },
+      {
+        "command": "h47-optimizer.stats",
+        "title": "H47: Show Optimizer Info",
+        "category": "H47"
+      }
+    ],
+    "configuration": {
+      "title": "H47 Token Optimizer",
+      "properties": {
+        "h47.compressionLevel": {
+          "type": "string",
+          "enum": ["conservative", "balanced", "aggressive"],
+          "default": "balanced",
+          "description": "Default compression level"
+        },
+        "h47.targetAI": {
+          "type": "string",
+          "enum": ["generic", "claude", "gpt", "cursor"],
+          "default": "generic",
+          "description": "Default target AI model"
+        },
+        "h47.maxTokens": {
+          "type": "number",
+          "default": 2000,
+          "minimum": 100,
+          "description": "Maximum output tokens"
+        },
+        "h47.showPreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Open preview document instead of replacing selection (Optimize command)"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "h47-optimizer.optimize",
+          "when": "editorHasSelection",
+          "group": "h47@1"
+        },
+        {
+          "command": "h47-optimizer.optimize-replace",
+          "when": "editorHasSelection",
+          "group": "h47@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "h47-optimizer.optimize",
+        "key": "ctrl+shift+o",
+        "mac": "cmd+shift+o",
+        "when": "editorTextFocus && editorHasSelection"
+      },
+      {
+        "command": "h47-optimizer.optimize-replace",
+        "key": "ctrl+shift+alt+o",
+        "mac": "cmd+shift+alt+o",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wcalmels/h47-token-optimizer"
+  },
+  "bugs": {
+    "url": "https://github.com/wcalmels/h47-token-optimizer/issues"
+  },
+  "homepage": "https://github.com/wcalmels/h47-token-optimizer#readme",
+  "galleryBanner": {
+    "color": "#1a1a2e",
+    "theme": "dark"
+  }
+}

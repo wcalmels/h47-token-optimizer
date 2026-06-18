@@ -41,7 +41,10 @@
     "benchmark:json": "tsx src/benchmarks/index.ts --json --json=benchmarks/results.json",
     "benchmark:csv": "tsx src/benchmarks/index.ts --quick --csv --json=benchmarks/results.json",
     "benchmark:compare": "tsx src/benchmarks/compareCli.ts",
-    "benchmark:save-baseline": "tsx src/benchmarks/index.ts --quick --save-baseline --quiet --json=benchmarks/baseline.json"
+    "benchmark:save-baseline": "tsx src/benchmarks/index.ts --quick --save-baseline --quiet --json=benchmarks/baseline.json",
+    "extension:build": "node scripts/build-vscode-extension.mjs && node scripts/prepare-vscode-extension.mjs",
+    "extension:pack": "npm run extension:build && cd extensions/vscode && vsce package --no-dependencies",
+    "extension:publish": "npm run extension:pack && cd extensions/vscode && vsce publish --no-dependencies"
   },
   "keywords": [
     "token-optimizer",
@@ -95,7 +98,9 @@
     "eslint": "^9.13.0",
     "@typescript-eslint/eslint-plugin": "^8.6.0",
     "@typescript-eslint/parser": "^8.6.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.6.2",
+    "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.24.0"
   },
   "engines": {
     "node": ">=18.0.0"

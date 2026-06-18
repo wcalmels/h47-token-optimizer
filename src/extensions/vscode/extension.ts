@@ -1,131 +1,142 @@
 /**
- * H47 Token Optimizer - VS Code Extension
- * Integrates token optimization directly into VS Code
+ * H47 Token Optimizer — VS Code Extension
+ *
+ * Copyright (c) 2024-2026 H47 Team
+ * SPDX-License-Identifier: MIT
  */
 
 import * as vscode from 'vscode';
-import { H47TokenOptimizer } from '../../core/tokenOptimizer';
+import { H47TokenOptimizer, OptimizationResult, OptimizationOptions } from '../../core/tokenOptimizer';
 
 const optimizer = new H47TokenOptimizer();
 
-export function activate(context: vscode.ExtensionContext) {
-  console.log('H47 Token Optimizer extension activated');
+function getOptions(overrides: Partial<OptimizationOptions> = {}): OptimizationOptions {
+  const config = vscode.workspace.getConfiguration('h47');
+  return {
+    targetAI: config.get('targetAI', 'generic'),
+    compressionLevel: config.get('compressionLevel', 'balanced'),
+    maxTokens: config.get('maxTokens', 2000),
+    ...overrides,
+  };
+}
 
-  // Command: Optimize selected text
-  const optimizeCommand = vscode.commands.registerCommand(
-    'h47-optimizer.optimize',
-    async () => {
-      const editor = vscode.window.activeTextEditor;
-      if (!editor) {
-        vscode.window.showErrorMessage('No active editor');
-        return;
-      }
+async function getSelectedText(): Promise<{ editor: vscode.TextEditor; text: string; selection: vscode.Selection } | null> {
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    vscode.window.showErrorMessage('H47: No active editor');
+    return null;
+  }
 
-      const selection = editor.selection;
-      const text = editor.document.getText(selection);
+  const selection = editor.selection;
+  const text = editor.document.getText(selection);
 
-      if (!text) {
-        vscode.window.showErrorMessage('No text selected');
-        return;
-      }
+  if (!text.trim()) {
+    vscode.window.showErrorMessage('H47: Select text to optimize');
+    return null;
+  }
 
-      try {
-        const result = await optimizer.optimize(text, {
-          targetAI: 'generic',
-          compressionLevel: 'balanced',
-        });
+  return { editor, text, selection };
+}
 
-        // Show result in new document
+export function activate(context: vscode.ExtensionContext): void {
+  const optimizePreview = vscode.commands.registerCommand('h47-optimizer.optimize', async () => {
+    const ctx = await getSelectedText();
+    if (!ctx) return;
+
+    try {
+      const result = await optimizer.optimize(ctx.text, getOptions());
+      const showPreview = vscode.workspace.getConfiguration('h47').get('showPreview', true);
+
+      if (showPreview) {
         const doc = await vscode.workspace.openTextDocument({
           language: 'markdown',
           content: formatResult(result),
         });
-
-        await vscode.window.showTextDocument(doc);
-      } catch (error) {
-        vscode.window.showErrorMessage(`Error: ${error}`);
+        await vscode.window.showTextDocument(doc, vscode.ViewColumn.Beside);
+      } else {
+        await replaceSelection(ctx.editor, ctx.selection, result);
       }
+
+      showMetricsToast(result);
+    } catch (error) {
+      vscode.window.showErrorMessage(`H47: ${error instanceof Error ? error.message : error}`);
     }
-  );
+  });
 
-  // Command: Optimize for Claude
-  const claudeCommand = vscode.commands.registerCommand(
-    'h47-optimizer.optimize-claude',
-    async () => {
-      const editor = vscode.window.activeTextEditor;
-      if (!editor) {
-        vscode.window.showErrorMessage('No active editor');
-        return;
-      }
+  const optimizeReplace = vscode.commands.registerCommand('h47-optimizer.optimize-replace', async () => {
+    const ctx = await getSelectedText();
+    if (!ctx) return;
 
-      const selection = editor.selection;
-      const text = editor.document.getText(selection);
-
-      if (!text) {
-        vscode.window.showErrorMessage('No text selected');
-        return;
-      }
-
-      try {
-        const result = await optimizer.optimize(text, {
-          targetAI: 'claude',
-          compressionLevel: 'balanced',
-        });
-
-        editor.edit((editBuilder) => {
-          editBuilder.replace(selection, result.optimized.text);
-        });
-
-        vscode.window.showInformationMessage(
-          `Optimized! Compression: ${result.metrics.compression}%, Quality: ${(result.metrics.quality * 100).toFixed(1)}%`
-        );
-      } catch (error) {
-        vscode.window.showErrorMessage(`Error: ${error}`);
-      }
+    try {
+      const result = await optimizer.optimize(ctx.text, getOptions());
+      await replaceSelection(ctx.editor, ctx.selection, result);
+      showMetricsToast(result);
+    } catch (error) {
+      vscode.window.showErrorMessage(`H47: ${error instanceof Error ? error.message : error}`);
     }
-  );
+  });
 
-  // Command: Show statistics
+  const optimizeClaude = vscode.commands.registerCommand('h47-optimizer.optimize-claude', async () => {
+    const ctx = await getSelectedText();
+    if (!ctx) return;
+
+    try {
+      const result = await optimizer.optimize(ctx.text, getOptions({ targetAI: 'claude' }));
+      await replaceSelection(ctx.editor, ctx.selection, result);
+      showMetricsToast(result);
+    } catch (error) {
+      vscode.window.showErrorMessage(`H47: ${error instanceof Error ? error.message : error}`);
+    }
+  });
+
   const statsCommand = vscode.commands.registerCommand('h47-optimizer.stats', () => {
     const stats = optimizer.getStats();
     vscode.window.showInformationMessage(
-      `H47 Token Optimizer v${stats.version}\nSupported AIs: ${stats.supportedAIs.join(', ')}`
+      `H47 Token Optimizer v${stats.version} · AIs: ${stats.supportedAIs.join(', ')}`
     );
   });
 
-  context.subscriptions.push(optimizeCommand, claudeCommand, statsCommand);
+  context.subscriptions.push(optimizePreview, optimizeReplace, optimizeClaude, statsCommand);
 }
 
-export function deactivate() {
-  console.log('H47 Token Optimizer extension deactivated');
+export function deactivate(): void {}
+
+async function replaceSelection(
+  editor: vscode.TextEditor,
+  selection: vscode.Selection,
+  result: OptimizationResult
+): Promise<void> {
+  await editor.edit((edit) => edit.replace(selection, result.optimized.text));
 }
 
-function formatResult(result: any): string {
+function showMetricsToast(result: OptimizationResult): void {
+  vscode.window.setStatusBarMessage(
+    `H47: ${result.metrics.compression}% compression · ${result.metrics.savings} tokens saved`,
+    5000
+  );
+}
+
+function formatResult(result: OptimizationResult): string {
   return `# H47 Token Optimizer Result
 
-## Original
-- Tokens: ${result.original.tokenCount}
-- Complexity: ${result.original.complexity.toFixed(2)}
-
+## Original (${result.original.tokenCount} tokens)
 \`\`\`
 ${result.original.text}
 \`\`\`
 
-## Optimized
-- Tokens: ${result.optimized.tokenCount}
-- Complexity: ${result.optimized.complexity.toFixed(2)}
-
+## Optimized (${result.optimized.tokenCount} tokens)
 \`\`\`
 ${result.optimized.text}
 \`\`\`
 
 ## Metrics
-- Compression: ${result.metrics.compression}%
-- Quality: ${(result.metrics.quality * 100).toFixed(2)}%
-- Speedup: ${result.metrics.speedup}x
-- Tokens Saved: ${result.metrics.savings}
+| Metric | Value |
+|--------|------:|
+| Compression | ${result.metrics.compression}% |
+| Quality (heuristic) | ${(result.metrics.quality * 100).toFixed(1)}% |
+| Tokens saved | ${result.metrics.savings} |
+| Strategy | ${result.strategy} |
 
-## Strategy
-${result.strategy}
+> Quality is a heuristic. See [limitations](https://github.com/wcalmels/h47-token-optimizer/blob/main/docs/LIMITATIONS.md).
 `;
 }
