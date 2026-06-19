@@ -15,10 +15,10 @@ The VS Code extension is live. NPM still needs a **read-write** token (the previ
    - **Expiration:** 90 days (or custom)
    - **Packages and scopes:** select **Read and write**
    - **Select packages:** choose `h47-token-optimizer` (and `@wcalmels/h47-token-optimizer` if listed)
-   - **Organizations:** no extra scope needed for unscoped package
+   - **Bypass 2FA:** enable if your npm account uses two-factor authentication (required for `npm publish`)
 4. **Generate token** → copy it once (starts with `npm_`)
 
-> Alternative: classic **Automation** token (also has publish rights).
+> **If publish fails with 2FA:** use a classic **Automation** token instead (npm → Access Tokens → Generate New Token → **Classic Token** → **Automation**). Automation tokens can publish without OTP when 2FA is enabled on your account.
 
 ### Publish
 
