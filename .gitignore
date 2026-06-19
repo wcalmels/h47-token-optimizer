@@ -17,3 +17,4 @@ benchmarks/comparison.json
 extensions/vscode/out/
 extensions/vscode/*.vsix
 extensions/vscode/LICENSE
+data/

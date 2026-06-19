@@ -139,7 +139,27 @@ Environment: `PORT`, `RATE_LIMIT` (default 100 req/min/IP). See [.env.example](.
 - Moat is thin without distribution, vertical focus, or workflow integration
 - Open-core (MIT library + paid hosted/enterprise) is the natural model
 
-Full analysis with unit economics and break-even: **[docs/BUSINESS.md](docs/BUSINESS.md)**.
+Full analysis: **[docs/BUSINESS.md](docs/BUSINESS.md)**  
+**Production deploy with Stripe:** **[docs/DEPLOY.md](docs/DEPLOY.md)**
+
+### Monetized hosted API (quick start)
+
+```bash
+cp .env.production.example .env.production
+# Configure STRIPE_* keys + BOOTSTRAP_API_KEY
+
+docker compose up -d --build
+
+# Create customer API keys
+npm run create-key -- --plan pro --email client@corp.com
+```
+
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /api/plans` | Public pricing |
+| `POST /api/checkout` | Stripe subscription URL |
+| `GET /api/usage` | Usage vs limits (Bearer token) |
+| `POST /api/optimize` | Requires `Authorization: Bearer h47_...` when monetization enabled |
 
 ---
 

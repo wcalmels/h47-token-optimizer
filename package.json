@@ -44,7 +44,10 @@
     "benchmark:save-baseline": "tsx src/benchmarks/index.ts --quick --save-baseline --quiet --json=benchmarks/baseline.json",
     "extension:build": "node scripts/build-vscode-extension.mjs && node scripts/prepare-vscode-extension.mjs",
     "extension:pack": "npm run extension:build && cd extensions/vscode && vsce package --no-dependencies",
-    "extension:publish": "npm run extension:pack && cd extensions/vscode && vsce publish --no-dependencies"
+    "extension:publish": "npm run extension:pack && cd extensions/vscode && vsce publish --no-dependencies",
+    "create-key": "tsx scripts/create-api-key.ts",
+    "docker:up": "docker compose up -d --build",
+    "docker:down": "docker compose down"
   },
   "keywords": [
     "token-optimizer",
@@ -81,7 +84,8 @@
     "dotenv": "^16.4.5",
     "cors": "^2.8.5",
     "helmet": "^7.1.0",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "stripe": "^17.4.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
