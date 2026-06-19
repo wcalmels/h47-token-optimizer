@@ -2,52 +2,59 @@
 
 Complete these steps once to enable automated publishing from GitHub Actions.
 
-## 1. NPM (`h47-token-optimizer`)
+## 1. NPM (`h47-token-optimizer`) — pending
 
-1. Create/login at [npmjs.com](https://www.npmjs.com/signup) as **wcalmels**.
-2. Create a token with **Read and Write** permissions (not read-only):
-   - npm → Access Tokens → **Granular Access Token**
-   - Permissions: **Packages and scopes → Read and write**
-   - Or use a classic **Automation** token with publish rights
-3. Add it to GitHub:
+The VS Code extension is live. NPM still needs a **read-write** token (the previous one was read-only → `403 Forbidden`).
 
-   ```powershell
-   gh secret set NPM_TOKEN -R wcalmels/h47-token-optimizer
-   ```
+### Create the token (exact steps)
 
-4. **Important:** If you reserved `h47-token-optimizer` or `@wcalmels/h47-token-optimizer` as **private** placeholders on npm, your token must be able to **publish** to them (read-only tokens fail with `403 Forbidden`).
+1. Login at [npmjs.com](https://www.npmjs.com) as **wcalmels**
+2. Avatar → **Access Tokens** → **Generate New Token** → **Granular Access Token**
+3. Configure:
+   - **Token name:** `h47-github-publish`
+   - **Expiration:** 90 days (or custom)
+   - **Packages and scopes:** select **Read and write**
+   - **Select packages:** choose `h47-token-optimizer` (and `@wcalmels/h47-token-optimizer` if listed)
+   - **Organizations:** no extra scope needed for unscoped package
+4. **Generate token** → copy it once (starts with `npm_`)
 
-5. Trigger publish:
+> Alternative: classic **Automation** token (also has publish rights).
 
-   ```powershell
-   gh workflow run "Publish to NPM" -R wcalmels/h47-token-optimizer
-   ```
+### Publish
 
-Verify: `npm view h47-token-optimizer`
+```powershell
+gh secret set NPM_TOKEN -R wcalmels/h47-token-optimizer
+gh workflow run "Publish to NPM" -R wcalmels/h47-token-optimizer
+```
 
-## 2. VS Code Marketplace
+Verify:
 
-1. Create publisher **wcalmels** at [marketplace.visualstudio.com/manage](https://marketplace.visualstudio.com/manage).
-2. Create Azure DevOps PAT with these **exact** settings ([docs](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)):
-   - **Organization:** `All accessible organizations` (a single-org PAT often verifies but publish returns 401)
-   - **Scopes:** Custom → Show all scopes → **Marketplace → Manage** only (not Acquire, not Publish)
-   - Same Microsoft account that owns publisher `wcalmels` on the Marketplace
-3. Add secret:
+```bash
+npm view h47-token-optimizer
+npm install h47-token-optimizer
+npx h47-optimize "test prompt"
+```
+
+## 2. VS Code Marketplace — done
+
+Published: [wcalmels.h47-token-optimizer](https://marketplace.visualstudio.com/items?itemName=wcalmels.h47-token-optimizer)
+
+Install in VS Code / Cursor: search **H47 Token Optimizer** or `Ctrl+Shift+O` on selected text.
+
+<details>
+<summary>Republish / update VSCE_PAT</summary>
+
+1. Create Azure DevOps PAT:
+   - **Organization:** `All accessible organizations`
+   - **Scopes:** **Marketplace → Manage**
+2. Update secret and publish:
 
    ```powershell
    gh secret set VSCE_PAT -R wcalmels/h47-token-optimizer
+   gh workflow run "Publish VS Code Extension" -R wcalmels/h47-token-optimizer
    ```
 
-4. Verify locally before CI:
-
-   ```powershell
-   $env:VSCE_PAT = "YOUR_PAT"
-   npx vsce verify-pat
-   cd extensions/vscode
-   npx vsce publish --no-dependencies -p $env:VSCE_PAT
-   ```
-
-5. **Manual fallback** (works when CLI returns 401): upload the `.vsix` at [marketplace.visualstudio.com/manage/publishers/wcalmels](https://marketplace.visualstudio.com/manage/publishers/wcalmels) → **+ New extension** → **Visual Studio Code** → upload `extensions/vscode/h47-token-optimizer-1.0.0.vsix`.
+</details>
 
 ## 3. Open VSX (Cursor / VSCodium)
 

@@ -6,6 +6,7 @@
 [![Node](https://img.shields.io/badge/Node-18%20|%2020-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![GitHub release](https://img.shields.io/github/v/release/wcalmels/h47-token-optimizer?include_prereleases)](https://github.com/wcalmels/h47-token-optimizer/releases)
 [![npm](https://img.shields.io/npm/v/h47-token-optimizer)](https://www.npmjs.com/package/h47-token-optimizer)
+[![Visual Studio Marketplace](https://img.shields.io/visual-studio-marketplace/v/wcalmels.h47-token-optimizer?label=VS%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=wcalmels.h47-token-optimizer)
 [![Discussions](https://img.shields.io/github/discussions/wcalmels/h47-token-optimizer)](https://github.com/wcalmels/h47-token-optimizer/discussions)
 
 Deterministic, local compression for LLM prompts. No inference required.
@@ -17,6 +18,15 @@ Given a long prompt, the pipeline extracts salient sentences, synthesizes a shor
 ---
 
 ## Quick start
+
+**From npm** (after publish):
+
+```bash
+npm install h47-token-optimizer
+npx h47-optimize "Your long prompt here..."
+```
+
+**From source:**
 
 ```bash
 git clone https://github.com/wcalmels/h47-token-optimizer

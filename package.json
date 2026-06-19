@@ -78,6 +78,10 @@
     "url": "https://github.com/wcalmels/h47-token-optimizer/issues"
   },
   "homepage": "https://github.com/wcalmels/h47-token-optimizer#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "dependencies": {
     "express": "^4.21.2",
     "commander": "^12.1.0",
