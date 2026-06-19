@@ -140,7 +140,8 @@ Environment: `PORT`, `RATE_LIMIT` (default 100 req/min/IP). See [.env.example](.
 - Open-core (MIT library + paid hosted/enterprise) is the natural model
 
 Full analysis: **[docs/BUSINESS.md](docs/BUSINESS.md)**  
-**Production deploy with Stripe:** **[docs/DEPLOY.md](docs/DEPLOY.md)**
+**Try on Railway (15 min):** **[docs/DEPLOY-RAILWAY.md](docs/DEPLOY-RAILWAY.md)**  
+**VPS / production:** **[docs/DEPLOY.md](docs/DEPLOY.md)**
 
 ### Monetized hosted API (quick start)
 

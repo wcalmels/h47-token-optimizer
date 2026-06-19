@@ -46,6 +46,7 @@
     "extension:pack": "npm run extension:build && cd extensions/vscode && vsce package --no-dependencies",
     "extension:publish": "npm run extension:pack && cd extensions/vscode && vsce publish --no-dependencies",
     "create-key": "tsx scripts/create-api-key.ts",
+    "generate-secrets": "tsx scripts/generate-secrets.ts",
     "docker:up": "docker compose up -d --build",
     "docker:down": "docker compose down"
   },
