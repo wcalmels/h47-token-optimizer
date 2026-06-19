@@ -31,6 +31,7 @@ export async function createCheckoutSession(options: {
     return { url: null, error: 'Stripe not configured. Set STRIPE_SECRET_KEY and price IDs.' };
   }
 
+  const priceId = getStripePriceId(options.planId);
   if (!priceId) {
     return { url: null, error: `No Stripe price configured for plan: ${options.planId}` };
   }
