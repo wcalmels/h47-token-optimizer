@@ -1,0 +1,23 @@
+title: Idea
+labels:
+  - idea
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share an idea for H47 Token Optimizer — new features, integrations, or use cases.
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: What would you like to see?
+      placeholder: e.g. Add a VS Code setting to auto-compress on save...
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why would this help you or others?
+    validations:
+      required: false

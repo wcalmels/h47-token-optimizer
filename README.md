@@ -1,5 +1,12 @@
 # H47 Token Optimizer
 
+[![CI/CD](https://github.com/wcalmels/h47-token-optimizer/actions/workflows/ci.yml/badge.svg)](https://github.com/wcalmels/h47-token-optimizer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/github/license/wcalmels/h47-token-optimizer)](https://github.com/wcalmels/h47-token-optimizer/blob/main/LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node](https://img.shields.io/badge/Node-18%20|%2020-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![GitHub release](https://img.shields.io/github/v/release/wcalmels/h47-token-optimizer?include_prereleases)](https://github.com/wcalmels/h47-token-optimizer/releases)
+[![Discussions](https://img.shields.io/github/discussions/wcalmels/h47-token-optimizer)](https://github.com/wcalmels/h47-token-optimizer/discussions)
+
 Deterministic, local compression for LLM prompts. No inference required.
 
 Given a long prompt, the pipeline extracts salient sentences, synthesizes a shorter version, enforces a token budget, and adapts formatting for Claude, GPT, Cursor, or generic models. Typical latency: **1–15 ms**. Typical compression on repetitive/long inputs: **70–97%** (see benchmarks below).

@@ -1,0 +1,23 @@
+title: Q&A
+labels:
+  - question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask a question about installation, usage, benchmarks, or deployment.
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      placeholder: What are you trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, Node version, compression level, target AI, etc.
+      placeholder: Windows 11, Node 20, balanced, claude
+    validations:
+      required: false
