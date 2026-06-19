@@ -5,6 +5,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Node](https://img.shields.io/badge/Node-18%20|%2020-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![GitHub release](https://img.shields.io/github/v/release/wcalmels/h47-token-optimizer?include_prereleases)](https://github.com/wcalmels/h47-token-optimizer/releases)
+[![npm](https://img.shields.io/npm/v/h47-token-optimizer)](https://www.npmjs.com/package/h47-token-optimizer)
 [![Discussions](https://img.shields.io/github/discussions/wcalmels/h47-token-optimizer)](https://github.com/wcalmels/h47-token-optimizer/discussions)
 
 Deterministic, local compression for LLM prompts. No inference required.
@@ -213,6 +214,7 @@ See [NOTICE](NOTICE) for third-party attributions.
 - [Limitations](docs/LIMITATIONS.md) — read before production
 - [Business viability](docs/BUSINESS.md)
 - [VS Code Marketplace](docs/MARKETPLACE.md) — publish the extension
+- [Publish setup](docs/PUBLISH_SETUP.md) — NPM, Marketplace, and Open VSX tokens
 - [Changelog](CHANGELOG.md)
 - [Security policy](SECURITY.md)
 

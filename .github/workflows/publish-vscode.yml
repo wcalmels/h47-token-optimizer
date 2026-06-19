@@ -1,6 +1,8 @@
 name: Publish VS Code Extension
 
 on:
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -32,9 +34,17 @@ jobs:
         run: cd extensions/vscode && npx vsce publish --no-dependencies
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        continue-on-error: true
 
       - name: Upload VSIX artifact
         uses: actions/upload-artifact@v4
         with:
           name: h47-vscode-extension
           path: extensions/vscode/*.vsix
+
+      - name: Attach VSIX to GitHub Release
+        if: github.event_name == 'release'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" extensions/vscode/*.vsix --clobber
