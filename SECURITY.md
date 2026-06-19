@@ -10,7 +10,7 @@
 
 Please **do not** open a public GitHub issue for security vulnerabilities.
 
-Email: security@h47.ai (or open a private security advisory on GitHub if enabled).
+Email: wcalmels@phih47.cl (or open a private security advisory on GitHub if enabled).
 
 Include:
 - Description of the issue
