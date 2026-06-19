@@ -28,7 +28,10 @@ Verify: `npm view h47-token-optimizer`
 ## 2. VS Code Marketplace
 
 1. Create publisher **wcalmels** at [marketplace.visualstudio.com/manage](https://marketplace.visualstudio.com/manage).
-2. Create Azure DevOps PAT with **Marketplace → Publish** scope (Manage alone is not enough for `vsce publish`).
+2. Create Azure DevOps PAT with these **exact** settings ([docs](https://code.visualstudio.com/api/working-with-extensions/publishing-extension)):
+   - **Organization:** `All accessible organizations` (a single-org PAT often verifies but publish returns 401)
+   - **Scopes:** Custom → Show all scopes → **Marketplace → Manage** only (not Acquire, not Publish)
+   - Same Microsoft account that owns publisher `wcalmels` on the Marketplace
 3. Add secret:
 
    ```powershell
@@ -43,6 +46,8 @@ Verify: `npm view h47-token-optimizer`
    cd extensions/vscode
    npx vsce publish --no-dependencies -p $env:VSCE_PAT
    ```
+
+5. **Manual fallback** (works when CLI returns 401): upload the `.vsix` at [marketplace.visualstudio.com/manage/publishers/wcalmels](https://marketplace.visualstudio.com/manage/publishers/wcalmels) → **+ New extension** → **Visual Studio Code** → upload `extensions/vscode/h47-token-optimizer-1.0.0.vsix`.
 
 ## 3. Open VSX (Cursor / VSCodium)
 
