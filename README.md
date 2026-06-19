@@ -181,8 +181,8 @@ If you use this in research or a product, cite:
 ```bibtex
 @software{h47_token_optimizer,
   title  = {H47 Token Optimizer: a deterministic pipeline for LLM context compression},
-  author = {{H47 Team}},
-  year   = {2024},
+  author = {wcalmels}},
+  year   = {2026},
   url    = {https://github.com/wcalmels/h47-token-optimizer},
   license = {MIT}
 }
@@ -194,7 +194,7 @@ Or use [CITATION.cff](CITATION.cff) for automated citation tools.
 
 ## License & copyright
 
-Copyright © 2024-2026 H47 Team · [wcalmels](https://github.com/wcalmels). Released under the [MIT License](LICENSE).
+Copyright © 2025-2026 H47 Team · [wcalmels](https://github.com/wcalmels). Released under the [MIT License](LICENSE).
 
 See [NOTICE](NOTICE) for third-party attributions.
 
