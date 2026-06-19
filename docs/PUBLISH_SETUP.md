@@ -4,36 +4,24 @@ Complete these steps once to enable automated publishing from GitHub Actions.
 
 ## 1. NPM (`h47-token-optimizer`) — pending
 
-The VS Code extension is live. NPM still needs a **read-write** token (the previous one was read-only → `403 Forbidden`).
+npm **no ofrece tokens Classic** desde nov 2025. Usa una de estas opciones:
 
-### Create the token (exact steps)
+### Opción A — Trusted Publishing (recomendado, sin token)
 
-1. Login at [npmjs.com](https://www.npmjs.com) as **wcalmels**
-2. Avatar → **Access Tokens** → **Generate New Token** → **Granular Access Token**
-3. Configure:
-   - **Token name:** `h47-github-publish`
-   - **Expiration:** 90 days (or custom)
-   - **Packages and scopes:** select **Read and write**
-   - **Select packages:** choose `h47-token-optimizer` (and `@wcalmels/h47-token-optimizer` if listed)
-   - **Bypass 2FA:** enable if your npm account uses two-factor authentication (required for `npm publish`)
-4. **Generate token** → copy it once (starts with `npm_`)
+Guía completa en español: **[docs/NPM_PUBLISH_ES.md](./NPM_PUBLISH_ES.md)**
 
-> **If publish fails with 2FA:** use a classic **Automation** token instead (npm → Access Tokens → Generate New Token → **Classic Token** → **Automation**). Automation tokens can publish without OTP when 2FA is enabled on your account.
+Resumen:
+1. [npmjs.com/package/h47-token-optimizer](https://www.npmjs.com/package/h47-token-optimizer) → **Settings** → **Trusted Publisher**
+2. **GitHub Actions** → repo `wcalmels/h47-token-optimizer` → workflow `publish.yml`
+3. `gh workflow run "Publish to NPM" -R wcalmels/h47-token-optimizer`
 
-### Publish
+### Opción B — Token Granular con Bypass 2FA
 
-```powershell
-gh secret set NPM_TOKEN -R wcalmels/h47-token-optimizer
-gh workflow run "Publish to NPM" -R wcalmels/h47-token-optimizer
-```
+1. [npmjs.com/settings/wcalmels/tokens](https://www.npmjs.com/settings/wcalmels/tokens) → **Granular Access Token**
+2. **Read and write** → al **final del formulario** activa **Bypass 2FA**
+3. `gh secret set NPM_TOKEN -R wcalmels/h47-token-optimizer`
 
-Verify:
-
-```bash
-npm view h47-token-optimizer
-npm install h47-token-optimizer
-npx h47-optimize "test prompt"
-```
+> Sin **Bypass 2FA** falla con: `Two-factor authentication or granular access token with bypass 2fa enabled is required`
 
 ## 2. VS Code Marketplace — done
 
