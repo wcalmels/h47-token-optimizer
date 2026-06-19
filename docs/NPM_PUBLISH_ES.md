@@ -82,6 +82,22 @@ Reemplaza `123456` con el código de 6 dígitos actual. No sirve para CI automá
 
 ---
 
+## Si publicaste pero `npm install` da 404
+
+npm puede usar **staged publishing**: el paquete se sube pero no es público hasta que lo apruebes.
+
+1. Entra en [npmjs.com](https://www.npmjs.com) → **Packages** → `@wcalmels/h47-token-optimizer`
+2. Busca **Staged** / **Pending approval** / **Approve release**
+3. Aprueba con tu 2FA (app o passkey)
+4. Espera 2–5 minutos y verifica:
+
+```bash
+npm view @wcalmels/h47-token-optimizer
+npm install @wcalmels/h47-token-optimizer
+```
+
+---
+
 ## Errores comunes
 
 | Error | Causa | Solución |

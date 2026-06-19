@@ -2,26 +2,16 @@
 
 Complete these steps once to enable automated publishing from GitHub Actions.
 
-## 1. NPM (`h47-token-optimizer`) — pending
+## 1. NPM (`@wcalmels/h47-token-optimizer`) — published, pending public visibility
 
-npm **no ofrece tokens Classic** desde nov 2025. Usa una de estas opciones:
+Published versions **1.0.0** and **1.0.1** to npm. If `npm install` returns 404, approve the **staged release** on [npmjs.com](https://www.npmjs.com) → Packages → `@wcalmels/h47-token-optimizer`.
 
-### Opción A — Trusted Publishing (recomendado, sin token)
+```bash
+npm install @wcalmels/h47-token-optimizer
+npx h47-optimize "test prompt"
+```
 
-Guía completa en español: **[docs/NPM_PUBLISH_ES.md](./NPM_PUBLISH_ES.md)**
-
-Resumen:
-1. [npmjs.com/package/h47-token-optimizer](https://www.npmjs.com/package/h47-token-optimizer) → **Settings** → **Trusted Publisher**
-2. **GitHub Actions** → repo `wcalmels/h47-token-optimizer` → workflow `publish.yml`
-3. `gh workflow run "Publish to NPM" -R wcalmels/h47-token-optimizer`
-
-### Opción B — Token Granular con Bypass 2FA
-
-1. [npmjs.com/settings/wcalmels/tokens](https://www.npmjs.com/settings/wcalmels/tokens) → **Granular Access Token**
-2. **Read and write** → al **final del formulario** activa **Bypass 2FA**
-3. `gh secret set NPM_TOKEN -R wcalmels/h47-token-optimizer`
-
-> Sin **Bypass 2FA** falla con: `Two-factor authentication or granular access token with bypass 2fa enabled is required`
+Guía: **[docs/NPM_PUBLISH_ES.md](./NPM_PUBLISH_ES.md)**
 
 ## 2. VS Code Marketplace — done
 

@@ -13,6 +13,11 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Web dashboard
 - API authentication for self-hosted deployments
 
+## [1.0.1] - 2026-06-19
+
+### Changed
+- Published to npm as `@wcalmels/h47-token-optimizer` (scoped package; unscoped name reserved as private on npm)
+
 ## [1.0.0] - 2024-01-15
 
 ### Added

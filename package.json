@@ -1,6 +1,6 @@
 {
-  "name": "h47-token-optimizer",
-  "version": "1.0.0",
+  "name": "@wcalmels/h47-token-optimizer",
+  "version": "1.0.1",
   "description": "Deterministic local compression for LLM prompts. No inference required. MIT licensed.",
   "type": "module",
   "main": "dist/core/index.js",
